@@ -26,7 +26,7 @@ public class ClientUI extends javax.swing.JFrame {
 
     private WebResource webResource;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/CRUD_serve";
+    private static final String BASE_URI = "http://localhost:8080/CRUD_server/webresources";
     public int radionum;
 
     /**
@@ -655,7 +655,7 @@ public class ClientUI extends javax.swing.JFrame {
             }
             else
             {
-               locationTextField.setText("Enter Location details to delete"); 
+               locationTextField.setText("Enter Grade or student details to delete"); 
             }
         }
     }//GEN-LAST:event_submitButtonActionPerformed

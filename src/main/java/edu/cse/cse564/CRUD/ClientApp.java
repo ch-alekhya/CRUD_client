@@ -26,7 +26,7 @@ import com.sun.jersey.core.util.MultivaluedMapImpl;
 public class ClientApp {
     private WebResource webResource;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/CRUD_server/webresources";
+    private static final String BASE_URI = "http://localhost:8080/CRUD_server/webresources/";
     
     public ClientApp() {
         ClientConfig config = new DefaultClientConfig();
@@ -153,7 +153,7 @@ public class ClientApp {
         return webResource.path("gradebook").path(sid).path(gid).delete(ClientResponse.class);
         
     }
-    public static void main(String[] args)
+ /**   public static void main(String[] args)
     {
         ClientApp obj=new ClientApp();
        ClientResponse r= obj.createStudent("1", "aa");
@@ -190,10 +190,7 @@ public class ClientApp {
        System.out.println(r.toString());
        
        
-       /**r=obj.deleteGradeItemforallStudents("quiz");
-       System.out.println(r.toString());
-       r=obj.getGradebookdetails();
-       System.out.println(r.toString());**/
+       
        
        r=obj.deleteGradeforParticularStudent("3", "quiz");
        System.out.println(r.toString());
@@ -208,6 +205,6 @@ public class ClientApp {
        
        
        
-    }
+    }**/
     
 }
