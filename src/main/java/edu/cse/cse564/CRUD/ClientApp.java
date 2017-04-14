@@ -59,7 +59,7 @@ public class ClientApp {
         return webResource.path("gradebook/gradeitem").post(ClientResponse.class, params);
       
     }
-    
+  
     /**
      * 
      * This method is used to get student details based on given id
@@ -93,6 +93,12 @@ public class ClientApp {
     public ClientResponse getGradebookdetails()
     {
          return webResource.path("gradebook").accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+    }
+    
+    
+    public ClientResponse getAppealbookdetails()
+    {
+        return webResource.path("appeal").accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
     }
     
     /**
@@ -153,7 +159,56 @@ public class ClientApp {
         return webResource.path("gradebook").path(sid).path(gid).delete(ClientResponse.class);
         
     }
- /**   public static void main(String[] args)
+    
+    
+     /**
+     * This method is used to delete appeal  for particular student
+     * @param sid,gid
+     */
+    
+    public ClientResponse deleteAppealforStudent(String sid,String gid)
+    {
+        System.out.println("In client App -delete appeal for particular student");
+        Form params=new Form();
+        params.add("StudentID",sid);
+        params.add("GradeID",gid);
+        return webResource.path("gradebook/appeal/deleteAppeal").path(sid).path(gid).delete(ClientResponse.class);
+        
+    }
+      
+    /**
+     * 
+     * This method is used to create appeal 
+     */
+    
+    public ClientResponse fileAppeal(String gid, String sid, String message)
+    {
+        Form params=new Form();
+        params.add("GradeID",gid);
+        params.add("StudentID",sid);
+        params.add ("Message",message);
+        return webResource.path("/gradebook/appeal").post(ClientResponse.class,params);
+    }
+    
+    
+  
+    /**
+     * This method helps in updating gradeitem by giving gradeid, feedback, grade ,studentid for a given student
+     * @param sid,gid,grade,percentage
+     */
+    
+    public ClientResponse updateAppealforParticularStudent( String sid, String gid)
+    {
+         Form params=new Form();
+         params.add("StudentID",sid);
+         params.add("GradeID", gid);
+       
+         return webResource.path("gradebook/appealBook").put(ClientResponse.class, params);
+    }
+    
+
+    
+   /** public static void main(String[] args)
     {
         ClientApp obj=new ClientApp();
        ClientResponse r= obj.createStudent("1", "aa");
@@ -184,10 +239,7 @@ public class ClientApp {
        r=obj.getGradebookdetails();
        System.out.println(r.toString());
        
-       r=obj.deleteStudent("1");
-       System.out.println(r.toString());
-       r=obj.getGradebookdetails();
-       System.out.println(r.toString());
+       
        
        
        
@@ -202,6 +254,10 @@ public class ClientApp {
        r=obj.getGradebookdetails();
        System.out.println(r.toString());
        
+       
+      
+       r=obj.fileAppeal("midterm", "1", "want to appeal for this grade");
+       System.out.println(r.toString());
        
        
        
